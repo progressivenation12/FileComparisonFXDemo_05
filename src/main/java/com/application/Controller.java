@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -50,6 +51,7 @@ public class Controller {
     public TextField fieldFilePath_2;
     public TextField fieldGroupAddresses;
     public TextFlow count;
+    public Label cursorPosition;
     private String filePath = "";
     private String filePath1 = "";
     private String filePath2 = "";
@@ -62,6 +64,24 @@ public class Controller {
     File file = new File(filePath);
     File file1 = new File(filePath1);
     File file2 = new File(filePath2);
+
+    public void initialize() {
+        setupCursorTracking();
+    }
+
+    private void setupCursorTracking() {
+        informationArea.setOnKeyReleased(event -> updateCursorPosition());
+        informationArea.setOnMouseClicked(event -> updateCursorPosition());
+        informationArea.setOnMouseDragged(event -> updateCursorPosition());
+    }
+
+    private void updateCursorPosition() {
+        int caretPosition = informationArea.getCaretPosition();
+        int lineNumber = informationArea.getText(0, caretPosition).split("\n").length;
+        int columnNumber = caretPosition - informationArea.getText(0, caretPosition).lastIndexOf("\n") - 1;
+
+        cursorPosition.setText("Строка: " + lineNumber + ", Столбец: " + (columnNumber + 1));
+    }
 
     private File getFile() {
         fileChooser.setTitle("Select file");
