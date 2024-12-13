@@ -52,6 +52,7 @@ public class Controller {
     public TextField fieldGroupAddresses;
     public TextFlow count;
     public Label cursorPosition;
+    public Label numberOfPages;
     private String filePath = "";
     private String filePath1 = "";
     private String filePath2 = "";
@@ -77,10 +78,22 @@ public class Controller {
 
     private void updateCursorPosition() {
         int caretPosition = informationArea.getCaretPosition();
-        int lineNumber = informationArea.getText(0, caretPosition).split("\n").length;
-        int columnNumber = caretPosition - informationArea.getText(0, caretPosition).lastIndexOf("\n") - 1;
+        String text = informationArea.getText(0, caretPosition);
+        String[] lines = text.split("\n");
+        int lineNumber = 0;
+        int columnNumber = caretPosition - text.lastIndexOf("\n") - 1;
 
-        cursorPosition.setText("Строка: " + lineNumber + ", Столбец: " + (columnNumber + 1));
+        for (String line : lines) {
+            if (!line.isEmpty()) {
+                lineNumber++;
+            }
+        }
+
+        if (columnNumber < 0) {
+            columnNumber = caretPosition;
+        }
+
+        cursorPosition.setText("Строка: " + (lineNumber + 1) + ", Столбец: " + (columnNumber + 1));
     }
 
     private File getFile() {
@@ -234,6 +247,11 @@ public class Controller {
         informationArea.appendText(getPaddedString(additionalInformation, ' '));
 
         printToInformationArea(fileName1, fileName2);
+
+        int numbersLine = informationArea.getParagraphs().size();
+        int numbersOfPages = (int) Math.ceil((double) numbersLine / 60);
+
+        numberOfPages.setText("Листов: " + numbersOfPages);
     }
 
     private void printToInformationArea(String fileName1, String fileName2) {

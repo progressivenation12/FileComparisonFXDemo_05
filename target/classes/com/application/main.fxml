@@ -80,7 +80,12 @@
                         <Font name="Monospaced Regular" size="13.0" />
                     </font>
                 </Button>
-            <Label fx:id="cursorPosition" alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="200.0" text="Строка: 1, Столбец: 1" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="758.0">
+            <Label fx:id="cursorPosition" alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="200.0" text="Строка: 0, Столбец: 0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="758.0">
+               <font>
+                  <Font name="Monospaced Regular" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="numberOfPages" alignment="CENTER_RIGHT" layoutX="580.0" layoutY="768.0" prefHeight="15.0" prefWidth="100.0" text="Листов: 0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="758.0">
                <font>
                   <Font name="Monospaced Regular" size="13.0" />
                </font>
