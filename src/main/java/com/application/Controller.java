@@ -78,22 +78,13 @@ public class Controller {
 
     private void updateCursorPosition() {
         int caretPosition = informationArea.getCaretPosition();
-        String text = informationArea.getText(0, caretPosition);
-        String[] lines = text.split("\n");
-        int lineNumber = 0;
-        int columnNumber = caretPosition - text.lastIndexOf("\n") - 1;
+        String textUpToCaret = informationArea.getText(0, caretPosition);
 
-        for (String line : lines) {
-            if (!line.isEmpty()) {
-                lineNumber++;
-            }
-        }
+        int lineNumber = textUpToCaret.split("\n", -1).length;
+        int lastNewlineIndex = textUpToCaret.lastIndexOf('\n');
+        int columnNumber = caretPosition - lastNewlineIndex;
 
-        if (columnNumber < 0) {
-            columnNumber = caretPosition;
-        }
-
-        cursorPosition.setText("Строка: " + (lineNumber + 1) + ", Столбец: " + (columnNumber + 1));
+        cursorPosition.setText("Строка: " + lineNumber + ", Столбец: " + columnNumber);
     }
 
     private File getFile() {

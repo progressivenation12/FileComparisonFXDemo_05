@@ -16,20 +16,12 @@
         <exefilename>FileComparisonFX</exefilename>
         <product.title>FileComparisonFX</product.title>
         <product.company>Karasev Roman</product.company>
-        <product.year>2024</product.year>
+        <product.year>2025</product.year>
         <launch4j.version>3.50</launch4j.version>
         <jdkVersion>17</jdkVersion>
-        <org.openjfx.version>24-ea+5</org.openjfx.version>
+        <org.openjfx.version>17.0.2</org.openjfx.version>
         <org.apache.poi>5.3.0</org.apache.poi>
     </properties>
-
-    <repositories>
-        <repository>
-            <id>GroupDocsArtifactRepository</id>
-            <name>GroupDocs Artifact Repository</name>
-            <url>https://repository.groupdocs.com/repo/</url>
-        </repository>
-    </repositories>
 
     <dependencies>
         <dependency>
@@ -123,26 +115,37 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.8</version>
-                <configuration>
-                    <mainClass>com.application.Main</mainClass>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.openjfx</groupId>-->
+<!--                <artifactId>javafx-maven-plugin</artifactId>-->
+<!--                <version>0.0.8</version>-->
+<!--                <configuration>-->
+<!--                    <mainClass>com.application.Main</mainClass>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.34</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.1</version>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-resources-plugin</artifactId>-->
+<!--                <version>3.3.1</version>-->
+<!--            </plugin>-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
